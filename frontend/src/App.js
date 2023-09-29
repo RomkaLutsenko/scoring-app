@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import StartPage from "./pages/StartPage";
 import MainPage from "./pages/MainPage";
 
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {

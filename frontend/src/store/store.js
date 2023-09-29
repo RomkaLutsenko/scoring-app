@@ -1,48 +1,12 @@
-import AuthService from "../services/AuthService";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {postAPI} from "../services/rtkAPI";
 
-export default class Store {
-    user = {}
-    isAuth = false
+const rootReducer = combineReducers({
+    [postAPI.reducerPath]: postAPI.reducer,
+})
 
-
-    setAuth(bool) {
-        this.isAuth = bool
-    }
-
-    setUser(user) {
-        this.user = user
-    }
-
-    async login(email, password) {
-        try {
-            const response = await  AuthService.login(email, password)
-            localStorage.setItem('token', response.data.accessToken)
-            this.setAuth(true)
-            this.setUser(response.data.user)
-        } catch (e) {
-            console.log(e.response?.data?.message)
-        }
-    }
-
-    async reg(email, password) {
-        try {
-            const response = await  AuthService.registration(email, password)
-            localStorage.setItem('token', response.data.accessToken)
-            this.setAuth(true)
-            this.setUser(response.data.user)
-        } catch (e) {
-            console.log(e.response?.data?.message)
-        }
-    }
-
-    async logout() {
-        try {
-            const response = await  AuthService.logout()
-            localStorage.removeItem('token')
-            this.setAuth(false)
-            this.setUser({response})
-        } catch (e) {
-            console.log(e.response?.data?.message)
-        }
-    }
-};
+export const store = configureStore({
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(postAPI.middleware)
+})

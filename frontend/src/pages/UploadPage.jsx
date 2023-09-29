@@ -32,10 +32,10 @@ function UploadPage() {
     return (
         <div className="App">
             {/* Поле загрузки данных */}
-            <UploadPage_UploadBlock />
+            <div style={{display: "flex", height: "350px", justifyContent: "center"}}>
+                <UploadPage_UploadBlock />
+            </div>
             <UploadPage_ButtonGroup />
-
-
 
 
 
