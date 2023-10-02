@@ -19,15 +19,15 @@ function UploadPage() {
     //     });
     // }
 
-    async function getfiles() {
-        axios.get('http://127.0.0.1:8000/api/files/').then(
-            res => {
-                console.log(res.data)
-                setFiles(res.data)
-            }).catch(e => {
-                console.log(e)
-            })
-    }
+    // async function getfiles() {
+    //     axios.get('http://127.0.0.1:8000/api/files/').then(
+    //         res => {
+    //             console.log(res.data)
+    //             setFiles(res.data)
+    //         }).catch(e => {
+    //             console.log(e)
+    //         })
+    // }
 
     return (
         <div className="App">

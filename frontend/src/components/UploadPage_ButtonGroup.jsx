@@ -3,13 +3,14 @@ import MyButton from './UI/MyButton/MyButton';
 import axios from 'axios';
 import {useFetchAllPostsQuery} from "../services/rtkAPI";
 import _ from "lodash";
+import {Table} from "./Table";
 
 const UploadPage_ButtonGroup = () => {
 
     const [view, setView] = useState("");
     const [searchTerm, setSearchTerm] = useState("")
     const [queryTerm, setQueryTerm] = useState("")
-    const [sortType, setSortType] = useState({ path: "id", order: "asc" })
+
     const [range, setRange] = useState({start: 0, end: 10})
     const [drag, setDrag] = useState(true)
     // const [files, setFiles] = useState([])
@@ -28,24 +29,7 @@ const UploadPage_ButtonGroup = () => {
         console.log(range)
     }
 
-    const handleSort = (item) => {
-        if (sortType.path === item) {
-            setSortType({ ...sortType, order: sortType.order === "asc" ? "desc" : "asc" })
-        } else {
-            setSortType({ path: item, order: "asc" })
-        }
-    }
 
-    const renderSortArrow = (sortType, currentPath) => {
-        if (sortType.path === currentPath) {
-            if (sortType.order === "asc") {
-                return <i className="bi bi-caret-up-fill">asc</i>
-            } else {
-                return <i className="bi bi-caret-down-fill">desc</i>
-            }
-        }
-        return null
-    }
 
     // async function getfiles() {
     //     axios.get('http://127.0.0.1:8000/api/files/').then(
@@ -160,7 +144,7 @@ const UploadPage_ButtonGroup = () => {
                                 Поиск
                             </button>
                         </div>
-
+                        <Table />
                         <table className="table text-left table-bordered p-5">
                              <thead>
                                 <tr>
@@ -181,6 +165,7 @@ const UploadPage_ButtonGroup = () => {
                             })}
                         </tbody>
                     </table>
+
                 </div>
                 )
                 }
